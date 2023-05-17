@@ -7,7 +7,7 @@ const Services = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/posts")
+    fetch("https://volunteer-server-psi.vercel.app/posts")
       .then((res) => res.json())
       .then(
         (result) => {
@@ -23,13 +23,13 @@ const Services = () => {
 
   const handleSearch = (e) => {
     if (e.target.value) {
-      fetch(`http://localhost:5000/searchByTitle/${e.target.value}`)
+      fetch(`https://volunteer-server-psi.vercel.app/searchByTitle/${e.target.value}`)
         .then((res) => res.json())
         .then((data) => {
           setPosts(data);
         });
     } else {
-      fetch("http://localhost:5000/posts")
+      fetch("https://volunteer-server-psi.vercel.app/posts")
         .then((res) => res.json())
         .then(
           (result) => {
