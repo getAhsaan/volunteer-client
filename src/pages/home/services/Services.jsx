@@ -23,7 +23,9 @@ const Services = () => {
 
   const handleSearch = (e) => {
     if (e.target.value) {
-      fetch(`https://volunteer-server-psi.vercel.app/searchByTitle/${e.target.value}`)
+      fetch(
+        `https://volunteer-server-psi.vercel.app/searchByTitle/${e.target.value}`
+      )
         .then((res) => res.json())
         .then((data) => {
           setPosts(data);
@@ -42,6 +44,19 @@ const Services = () => {
           }
         );
     }
+  };
+
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/posts/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          const remaining = posts.filter((post) => post._id !== id);
+          setPosts(remaining);
+        }
+      });
   };
 
   if (error) {
@@ -67,6 +82,7 @@ const Services = () => {
             <ServicesCard
               key={post._id}
               post={post}
+              handleDelete={handleDelete}
             ></ServicesCard>
           ))}
         </div>
