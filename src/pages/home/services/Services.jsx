@@ -47,7 +47,7 @@ const Services = () => {
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <div className="text-center text-2xl">Loading...</div>;
   } else {
     return (
       <div className="mt-8">
